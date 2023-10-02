@@ -1,11 +1,20 @@
 <script setup>
 import ImagenNasa from './components/ImagenNasa.vue'
+import { fetchImagesFromNasa } from './utils/nasa-fetch';
+import { ref } from 'vue'
+
+const imagen = ref(null)
+
+fetchImagesFromNasa().then(data => {
+   imagen.value = data[0];
+})
+
+
 </script>
 
 <template>
   <div class="d-flex">
-    <ImagenNasa titulo="Alta imagen" fecha="1996" imagen="https://apod.nasa.gov/apod/image/2206/V838Mon_Hubble_960.jpg"></ImagenNasa>
-    <!-- <ImagenNasa></ImagenNasa> -->
+    <ImagenNasa v-if="imagen !== null" :titulo="imagen.title" :fecha="imagen.date" :imagen="imagen.url"></ImagenNasa>
   </div>
 </template>
 
