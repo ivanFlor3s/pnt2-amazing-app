@@ -1,7 +1,8 @@
 <template>
   <div
     class="card"
-    :style="{ background: 'url(' + imagen + ') no-repeat center center fixed'}"
+    :style="{ background: 'url(' + imagen + ') no-repeat center center fixed', minHeight: '100vh'}"
+
   >
     <div class="card-body text-white">
       <h1>{{ titulo }}</h1>
