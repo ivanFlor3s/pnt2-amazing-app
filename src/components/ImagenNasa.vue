@@ -1,10 +1,10 @@
 <template>
   <div
-    class="card"
-    :style="{ background: 'url(' + imagen + ') no-repeat center center fixed', minHeight: '100vh'}"
+    class="card nasa-image" 
+    :style="{ background: 'no-repeat center/cover url(' + imagen + ')', minHeight: '100vh'}"
 
   >
-    <div class="card-body">
+    <div class="card-body text-white">
       <h1>{{ titulo }}</h1>
       <p>Fecha de foto tomada: {{ fecha }}</p>
     </div>
@@ -35,3 +35,9 @@ defineProps({
   }
 })
 </script>
+
+<style>
+.nasa-image{
+   max-width: 50%;
+}
+</style>
