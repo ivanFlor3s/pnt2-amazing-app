@@ -4,7 +4,7 @@
     :style="{ background: 'url(' + imagen + ') no-repeat center center fixed', minHeight: '100vh'}"
 
   >
-    <div class="card-body text-white">
+    <div class="card-body">
       <h1>{{ titulo }}</h1>
       <p>Fecha de foto tomada: {{ fecha }}</p>
     </div>
