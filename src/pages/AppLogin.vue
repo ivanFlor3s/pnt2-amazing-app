@@ -11,12 +11,17 @@
             <div class="mb-3">
               <label for="exampleInputText" class="form-label"> Nombre Usuario:</label>
               <input
-                :class="{ 'is-invalid': nombreUser.length < 4 }"
+                :class="{ 'is-invalid': nombreInvalido && submitted }"
                 v-model="nombreUser"
                 type="text"
                 class="form-control"
                 id="exampleInputText"
               />
+            </div>
+            <div v-if="(nombreInvalido && submitted)" class="mb-4" >
+              <small class="text-danger">
+                Selecciona un nombre de usuario con al menos 4 caracteres
+              </small>
             </div>
             <button type="submit" @click="submit()" class="btn btn-primary">Ingresar</button>
           </form>
@@ -27,15 +32,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import router from '@/router'
+
 const nombreUser = ref('')
+const submitted = ref(false)
+
 const submit = () => {
-  if (nombreUser.value.length > 4) {
+  submitted.value = true
+  if (!nombreInvalido.value) {
     router.push('game')
     alert('Bienvenido!')
   }
 }
+
+const nombreInvalido = computed(() => nombreUser.value.length < 4)
+
 </script>
 
 <style>
