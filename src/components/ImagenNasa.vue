@@ -67,7 +67,5 @@ onBeforeUnmount(() => {
 .nasa-image{
    max-width: 50%;
 }
-.bg-text{
-  background-color: rgba(0,0,0,0.3);
-}
+
 </style>

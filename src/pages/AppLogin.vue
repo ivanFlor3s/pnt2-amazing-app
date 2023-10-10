@@ -40,6 +40,7 @@ const nombreUser = ref('')
 const emptyFields = ref(false)
 const submitted = ref(false)
 const appState = appStateStore()
+
 const submit = () => {
   submitted.value = true
   if (!nombreInvalido.value) {

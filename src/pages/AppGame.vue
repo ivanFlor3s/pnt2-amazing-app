@@ -1,5 +1,6 @@
 <script setup>
 import ImagenNasa from '../components/ImagenNasa.vue'
+import ListaUsuarios from '../components/ListaUsuarios.vue';
 import { fetchImagesFromNasa } from '../utils/nasa-fetch'
 import { ref } from 'vue'
 
@@ -28,5 +29,19 @@ fetchImagesFromNasa().then((data) => {
       :imagen="imagen2.url"
     ></ImagenNasa>
   </div>
+
+  <div class="componenteUser bg-text text-white">
+    <ListaUsuarios >
+      
+    </ListaUsuarios>
+  </div>
 </template>
+<style scoped>
+  .componenteUser{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 2px 7px;
+  }
+</style>
 
