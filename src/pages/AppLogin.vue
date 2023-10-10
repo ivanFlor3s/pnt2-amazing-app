@@ -34,20 +34,25 @@
 <script setup>
 import { computed, ref } from 'vue'
 import router from '@/router'
+import { appStateStore } from '../stores/appState';
 
 const nombreUser = ref('')
 const emptyFields = ref(false)
 const submitted = ref(false)
-
+const appState = appStateStore()
 const submit = () => {
   submitted.value = true
   if (!nombreInvalido.value) {
     router.push('game')
     alert('Bienvenido!')
+    appState.setUserName(nombreUser.value)
   } else {
     emptyFields.value = true;
   }
 }
+
+
+
 
 const nombreInvalido = computed(() => nombreUser.value.length < 4)
 
