@@ -30,10 +30,13 @@
 import { ref } from 'vue'
 import router from '@/router'
 const nombreUser = ref('')
+const emptyFields = ref(false)
 const submit = () => {
   if (nombreUser.value.length > 4) {
     router.push('game')
     alert('Bienvenido!')
+  } else {
+    emptyFields.value = true;
   }
 }
 </script>
