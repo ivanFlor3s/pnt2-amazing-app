@@ -50,11 +50,11 @@ const socket = io('ws://localhost:3000', {
     transports: ['websocket']
 })
 const appState = appStateStore()
-const emit = defineEmits(['imprimir'])
+const emit = defineEmits(['seleccionado'])
 const selectOption = () => {
     socket.emit('select', props.fecha)
     appState.agregarPuntos()
-    emit("imprimir",props.fecha)
+    emit("seleccionado")
 }
 
 socket.on('selection', (data) => {
