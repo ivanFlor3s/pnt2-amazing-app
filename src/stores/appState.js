@@ -4,7 +4,8 @@ import { defineStore } from 'pinia'
 
 export const appStateStore = defineStore('appState', {
   state: () => ({
-    username : "" 
+    username : "", 
+    puntaje: 0
   }),
   getters: {
   },
@@ -12,6 +13,10 @@ export const appStateStore = defineStore('appState', {
     
     setUserName(username){
       this.username = username
+    },
+
+    agregarPuntos(){
+      this.puntaje ++
     }
 
   },

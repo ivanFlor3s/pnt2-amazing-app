@@ -20,6 +20,7 @@ fetchImagesFromNasa().then((data) => {
       :titulo="imagen.title"
       :fecha="imagen.date"
       :imagen="imagen.url"
+      @imprimir="(mensaje)=>console.log(mensaje)"
     ></ImagenNasa>
     <ImagenNasa
       class="flex-fill"

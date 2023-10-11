@@ -21,6 +21,7 @@
 <script setup>
 import io from 'socket.io-client'
 import { onBeforeUnmount } from 'vue'
+import { appStateStore } from '../stores/appState';
 
 const props = defineProps({
   imagen: {
@@ -48,9 +49,12 @@ const props = defineProps({
 const socket = io('ws://localhost:3000', {
     transports: ['websocket']
 })
-
+const appState = appStateStore()
+const emit = defineEmits(['imprimir'])
 const selectOption = () => {
     socket.emit('select', props.fecha)
+    appState.agregarPuntos()
+    emit("imprimir",props.fecha)
 }
 
 socket.on('selection', (data) => {
