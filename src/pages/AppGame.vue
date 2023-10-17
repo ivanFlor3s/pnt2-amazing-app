@@ -27,6 +27,18 @@ function evaluarSeleccion(opcion){
     appStore.agregarPuntos()
   }
 
+  cambiarImagen(opcion == 0 ? 1 : 0)
+
+}
+
+function cambiarImagen(opcionACambiar){
+  fetchImagesFromNasa().then((data) => {
+    if(opcionACambiar == 0){
+      imagen.value = data[0]
+    }else{
+      imagen2.value = data[0]
+    }
+  })
 }
 </script>
 <template>
