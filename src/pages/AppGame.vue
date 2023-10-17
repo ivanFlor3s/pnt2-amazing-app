@@ -49,7 +49,7 @@ function evaluarSeleccion(opcion){
     ></ImagenNasa>
   </div>
 
-  <div class="componenteUser bg-text text-white">
+  <div class="componenteUser bg-text text-white" style="width: 300px;">
     <ListaUsuarios >
       
     </ListaUsuarios>
@@ -60,7 +60,10 @@ function evaluarSeleccion(opcion){
     position: absolute;
     bottom: 20px;
     left: 20px;
-    padding: 2px 7px;
+    padding: 15px;
+    width: 300px;
+    max-height: 150px;
+    overflow: auto;
   }
 </style>
 
