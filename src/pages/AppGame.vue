@@ -11,6 +11,19 @@ fetchImagesFromNasa().then((data) => {
   imagen.value = data[0]
   imagen2.value = data[1]
 })
+
+function evaluarSeleccion(opcion){
+  
+  const fechaDeImagenSeleccionada = opcion == 0 ? imagen.value.date : imagen2.value.date
+  const fechaImagenNoSeleccionada = opcion == 0 ? imagen2.value.date : imagen.value.date
+  let gano = false
+  console.log(fechaDeImagenSeleccionada, fechaImagenNoSeleccionada)
+  gano = Date.parse(fechaDeImagenSeleccionada) < Date.parse(fechaImagenNoSeleccionada)
+  if(gano){
+    alert("ganaste!")
+  }
+
+}
 </script>
 <template>
      <div class="d-flex w-100">
@@ -20,6 +33,7 @@ fetchImagesFromNasa().then((data) => {
       :titulo="imagen.title"
       :fecha="imagen.date"
       :imagen="imagen.url"
+      @seleccionado="evaluarSeleccion(0)"
     ></ImagenNasa>
     <ImagenNasa
       class="flex-fill"
@@ -27,6 +41,7 @@ fetchImagesFromNasa().then((data) => {
       :titulo="imagen2.title"
       :fecha="imagen2.date"
       :imagen="imagen2.url"
+      @seleccionado="evaluarSeleccion(1)"
     ></ImagenNasa>
   </div>
 
