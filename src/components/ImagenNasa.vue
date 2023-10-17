@@ -20,7 +20,7 @@
 
 <script setup>
 import io from 'socket.io-client'
-import { onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
 
 const props = defineProps({
   imagen: {
@@ -56,6 +56,10 @@ const selectOption = () => {
 socket.on('selection', (data) => {
     console.log('hubo una seleccion:' + data)
 })
+
+onMounted(() => {
+  socket.connect()
+}),
 
 onBeforeUnmount(() => {
   socket.disconnect()
