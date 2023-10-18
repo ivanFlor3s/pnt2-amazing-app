@@ -20,7 +20,8 @@
 
 <script setup>
 import io from 'socket.io-client'
-import { onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
+import { appStateStore } from '../stores/appState';
 
 const props = defineProps({
   imagen: {
@@ -48,14 +49,21 @@ const props = defineProps({
 const socket = io('ws://localhost:3000', {
     transports: ['websocket']
 })
-
+const appState = appStateStore()
+const emit = defineEmits(['seleccionado'])
 const selectOption = () => {
     socket.emit('select', props.fecha)
+    appState.agregarPuntos()
+    emit("seleccionado")
 }
 
 socket.on('selection', (data) => {
     console.log('hubo una seleccion:' + data)
 })
+
+onMounted(() => {
+  socket.connect()
+}),
 
 onBeforeUnmount(() => {
   socket.disconnect()
@@ -67,7 +75,5 @@ onBeforeUnmount(() => {
 .nasa-image{
    max-width: 50%;
 }
-.bg-text{
-  background-color: rgba(0,0,0,0.3);
-}
+
 </style>
