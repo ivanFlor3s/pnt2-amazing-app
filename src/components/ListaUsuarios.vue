@@ -4,10 +4,14 @@
     <span>{{ appState.username }}</span>
     <span>{{ appState.puntaje }} Puntos </span>
   </div>
+  
+  <ProgressBar></ProgressBar>
 </template>
 
 <script setup>
-import { appStateStore } from '../stores/appState'
 
+import { appStateStore } from '../stores/appState'
+import ProgressBar from './ProgressBar.vue';
 const appState = appStateStore()
+
 </script>
