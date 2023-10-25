@@ -62,7 +62,7 @@ function cambiarImagen(opcionACambiar){
   </div>
 
   <div class="componenteUser bg-text text-white" style="width: 300px;">
-    <ListaUsuarios >
+    <ListaUsuarios :mostrar-barra="true">
       
     </ListaUsuarios>
   </div>
