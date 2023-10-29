@@ -1,15 +1,12 @@
 <template>
-    <div style="background: no-repeat center/cover url( 'https://media.giphy.com/media/biHH61yRTp0RZGNvxi/giphy.gif' ); min-height: 100vh">
-       <div class="d-flex h-100" >
-        <div class="custom-card " style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Ganaste!!</h5>
+    <div class="d-flex justify-content-center align-items-center"  style="background: no-repeat center/cover url( 'https://media.giphy.com/media/biHH61yRTp0RZGNvxi/giphy.gif' ); min-height: 100vh">
+        <div class="custom-card " style="min-width: 20rem;">
+            <div class="p-3">
+                <h1 class="text-center">Ganaste!!!</h1>
                 <ListaUsuarios :mostrar-barra="false"></ListaUsuarios>
-                <a href="#" class="btn btn-primary">Volver a jugar</a>
+                <a href="#" class="btn btn-primary mt-3">Volver a jugar</a>
             </div>
         </div>
-       </div>
-       
     </div> 
 </template>
 
