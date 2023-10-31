@@ -18,6 +18,10 @@ export const appStateStore = defineStore('appState', {
       this.username = username
     },
 
+    reiniciarPuntos(){
+      this.puntaje = 0;
+    },
+
     agregarPuntos() {
       //BUG ver forma de frenar el boton de opcion hasta que termina de cargar la imagen
       jsConfetti.addConfetti({
