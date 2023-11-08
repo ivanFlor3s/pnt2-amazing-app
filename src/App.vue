@@ -33,5 +33,8 @@ socket.on('ganador', (users)=> {
   game.setUsers(users)
 })
 
+socket.on('ir a game', () => {
+  router.push('game')
+})
 
 </script>

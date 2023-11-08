@@ -14,12 +14,13 @@
 import ListaUsuarios from '../components/ListaUsuarios.vue';
 import router from '@/router'
 import { gameStore } from '../stores/game-state';
+import { socket } from '../utils/socket';
 
 
 const game = gameStore()
 
 function volverAJugar(){
-    // appStore.reiniciarPuntos();
+    socket.emit('volver a jugar')
     router.push('game')
 }
 
