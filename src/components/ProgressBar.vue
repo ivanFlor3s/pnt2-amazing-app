@@ -3,7 +3,7 @@
     <div
       class="progress-bar"
       role="progressbar"
-      :style="{ width: appState.porcentajePuntaje + '%' }"
+      :style="{ width: porcentaje + '%' }"
       aria-valuenow="0"
       aria-valuemin="0"
       aria-valuemax="100"
@@ -12,7 +12,17 @@
 </template>
 
 <script setup>
-import { appStateStore } from '../stores/appState'
+import { computed } from 'vue';
 
-const appState = appStateStore()
+const props = defineProps({
+  puntaje: {
+    type: Number,
+    required: true
+  }})
+  
+const porcentaje = computed(() => {
+  return (props.puntaje * 100) / 20
+})
+
+
 </script>

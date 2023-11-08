@@ -1,22 +1,37 @@
 <template>
   <h4>Puntajes</h4>
-  <div class="d-flex justify-content-between">
-    <span>{{ appState.username }}</span>
-    <span>{{ appState.puntaje }} Puntos </span>
-  </div>
+  <div class="d-flex flex-column gap-2" >
+    <div v-for="player in game.users" :key="player.id">
+      <div class="d-flex justify-content-between">
+        <div class="mb-2">
+          <span class="me-2">{{ player.userName }}</span>
+          <span v-if="esMiUsuario(player)" class=" badge bg-secondary">Tu</span>
+        </div>
   
-  <ProgressBar v-if="props.mostrarBarra"></ProgressBar>
+        <span>{{ player.puntaje }} Puntos </span>
+      </div>
+      
+      <ProgressBar :puntaje="player.puntaje" v-if="props.mostrarBarra"></ProgressBar>
+    </div>
+  </div>
 </template>
 
 <script setup>
 
-import { appStateStore } from '../stores/appState'
+import { gameStore } from '../stores/game-state'
+import { socket } from '../utils/socket';
 import ProgressBar from './ProgressBar.vue';
-const appState = appStateStore()
+
+const game = gameStore()
+
 const props = defineProps({
   mostrarBarra: {
     type: Boolean,
     required: false
   }})
+
+  const esMiUsuario = (player) =>{
+    return player?.id === socket.id
+  }
 
 </script>

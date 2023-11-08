@@ -8,7 +8,7 @@
       <div class="d-flex flex-column justify-content-between h-100">
         <article class="p-2 rounded bg-text text-balance">
           <h1>{{ props.titulo }}</h1>
-          <p>Fecha de foto tomada: {{ props.fecha }}</p>
+          <p v-if="mostrarFecha">Fecha de foto tomada: {{ props.fecha }}</p>
         </article>
         <section class="mt-3">
           <button class="btn btn-primary" @click="selectOption()">Opcion</button>
@@ -19,9 +19,6 @@
 </template>
 
 <script setup>
-import io from 'socket.io-client'
-import { onBeforeUnmount, onMounted } from 'vue'
-import { appStateStore } from '../stores/appState';
 
 const props = defineProps({
   imagen: {
@@ -43,31 +40,18 @@ const props = defineProps({
   mostrarBoton: {
     type: Boolean,
     default: false
+  },
+  mostrarFecha: {
+    type: Boolean,
+    default: false
   }
 })
 
-const socket = io('ws://localhost:3000', {
-    transports: ['websocket']
-})
-const appState = appStateStore()
+
 const emit = defineEmits(['seleccionado'])
 const selectOption = () => {
-    socket.emit('select', props.fecha)
-    appState.agregarPuntos()
     emit("seleccionado")
 }
-
-socket.on('selection', (data) => {
-    console.log('hubo una seleccion:' + data)
-})
-
-onMounted(() => {
-  socket.connect()
-}),
-
-onBeforeUnmount(() => {
-  socket.disconnect()
-})
 
 </script>
 
