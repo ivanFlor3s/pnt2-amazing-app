@@ -8,7 +8,7 @@
       <div class="d-flex flex-column justify-content-between h-100">
         <article class="p-2 rounded bg-text text-balance">
           <h1>{{ props.titulo }}</h1>
-          <p>Fecha de foto tomada: {{ props.fecha }}</p>
+          <p v-if="mostrarFecha">Fecha de foto tomada: {{ props.fecha }}</p>
         </article>
         <section class="mt-3">
           <button class="btn btn-primary" @click="selectOption()">Opcion</button>
@@ -38,6 +38,10 @@ const props = defineProps({
     required: true
   },
   mostrarBoton: {
+    type: Boolean,
+    default: false
+  },
+  mostrarFecha: {
     type: Boolean,
     default: false
   }

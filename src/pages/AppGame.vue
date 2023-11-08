@@ -8,6 +8,8 @@ import { socket } from '../utils/socket';
 const imagen = ref(null)
 const imagen2 = ref(null)
 
+const mostrarFechaImg1 = ref(false)
+const mostrarFechaImg2 = ref(false)
 
 fetchImagesFromNasa().then((data) => {
   imagen.value = data[0]
@@ -34,8 +36,12 @@ function cambiarImagen(opcionACambiar){
   fetchImagesFromNasa().then((data) => {
     if(opcionACambiar == 0){
       imagen.value = data[0]
+      mostrarFechaImg2.value = true;      
+      mostrarFechaImg1.value = false;      
     }else{
       imagen2.value = data[0]
+      mostrarFechaImg2.value = false;      
+      mostrarFechaImg1.value = true;      
     }
   })
 }
@@ -48,6 +54,7 @@ function cambiarImagen(opcionACambiar){
       :titulo="imagen.title"
       :fecha="imagen.date"
       :imagen="imagen.url"
+      :mostrar-fecha="mostrarFechaImg1"
       @seleccionado="evaluarSeleccion(0)"
     ></ImagenNasa>
     <ImagenNasa
@@ -56,6 +63,7 @@ function cambiarImagen(opcionACambiar){
       :titulo="imagen2.title"
       :fecha="imagen2.date"
       :imagen="imagen2.url"
+      :mostrar-fecha="mostrarFechaImg2"
       @seleccionado="evaluarSeleccion(1)"
     ></ImagenNasa>
   </div>
