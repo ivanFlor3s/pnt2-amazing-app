@@ -22,4 +22,9 @@ socket.on('user disconnected', (users) => {
 //   console.log('params cuando user disconnected', users)
   game.setUsers(users)
 })
+
+socket.on('actualizar puntos', (users)=> {
+   game.setUsers(users)
+})
+
 </script>

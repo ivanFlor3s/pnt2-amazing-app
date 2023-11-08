@@ -1,14 +1,13 @@
 <script setup>
 import ImagenNasa from '../components/ImagenNasa.vue'
 import ListaUsuarios from '../components/ListaUsuarios.vue';
-import { appStateStore } from '../stores/appState';
 import { fetchImagesFromNasa } from '../utils/nasa-fetch'
 import { ref } from 'vue'
+import { socket } from '../utils/socket';
 
 const imagen = ref(null)
 const imagen2 = ref(null)
 
-const appStore = appStateStore()
 
 fetchImagesFromNasa().then((data) => {
   imagen.value = data[0]
@@ -24,7 +23,7 @@ function evaluarSeleccion(opcion){
   gano = Date.parse(fechaDeImagenSeleccionada) < Date.parse(fechaImagenNoSeleccionada)
   
   if(gano){
-    appStore.agregarPuntos()
+    socket.emit('nuevoPunto', socket.id)
   }
 
   cambiarImagen(opcion == 0 ? 1 : 0)

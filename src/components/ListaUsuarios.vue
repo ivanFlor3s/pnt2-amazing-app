@@ -1,18 +1,22 @@
 <template>
   <h4>Puntajes</h4>
-  <div class="d-flex justify-content-between">
-    <span>{{ appState.username }}</span>
-    <span>{{ appState.puntaje }} Puntos </span>
+
+  <div v-for="player in game.users" :key="player.id">
+    <div class="d-flex justify-content-between">
+      <span>{{ player.userName }}</span>
+      <span>{{ player.puntaje }} Puntos </span>
+    </div>
+    
+    <ProgressBar :puntaje="player.puntaje" v-if="props.mostrarBarra"></ProgressBar>
   </div>
-  
-  <ProgressBar v-if="props.mostrarBarra"></ProgressBar>
 </template>
 
 <script setup>
 
-import { appStateStore } from '../stores/appState'
+import { gameStore } from '../stores/game-state'
 import ProgressBar from './ProgressBar.vue';
-const appState = appStateStore()
+const game = gameStore()
+
 const props = defineProps({
   mostrarBarra: {
     type: Boolean,
