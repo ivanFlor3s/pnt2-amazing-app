@@ -17,11 +17,6 @@ export const socket = io('ws://localhost:3000', {
 })
 
 
-socket.on("new user", (params) => {
-    console.log('params cuando new user',params)
-    state.totalConnecions = params.total
-});
-
 
 socket.on("disconnect", () => {
   state.connected = false;

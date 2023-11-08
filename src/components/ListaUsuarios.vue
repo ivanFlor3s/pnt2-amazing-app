@@ -31,7 +31,6 @@ const props = defineProps({
   }})
 
   const esMiUsuario = (player) =>{
-    console.log('player', player)
     return player?.id === socket.id
   }
 
