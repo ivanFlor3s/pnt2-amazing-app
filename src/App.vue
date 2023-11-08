@@ -27,4 +27,11 @@ socket.on('actualizar puntos', (users)=> {
    game.setUsers(users)
 })
 
+socket.on('ganador', (users)=> {
+  router.push('result')
+
+  game.setUsers(users)
+})
+
+
 </script>
