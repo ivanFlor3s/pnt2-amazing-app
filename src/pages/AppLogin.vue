@@ -34,6 +34,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import router from '@/router'
+import { socket } from '../utils/socket';
 
 const nombreUser = ref('')
 const emptyFields = ref(false)
@@ -42,6 +43,7 @@ const submitted = ref(false)
 const submit = () => {
   submitted.value = true
   if (!nombreInvalido.value) {
+    socket.emit('join server', nombreUser.value)
     router.push('game')
   } else {
     emptyFields.value = true;
