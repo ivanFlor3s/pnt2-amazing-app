@@ -29,12 +29,21 @@ const router = createRouter({
       children: [
         { path: '/home', component: AppHome },
         { path: '/dashboard', component: AppDashboard },
-        { path: '/users', component: AppUsers },
+        { path: '/users', component: AppUsers }
       ]
     },
     { path: '/game', component: AppGame },
     { path: '/result', component: AppResult }
   ]
+})
+
+router.beforeEach((to) => {
+  const inAuthPath = to.path.includes('/auth')
+  const isAuthenticated = false
+
+  if (!inAuthPath && !isAuthenticated) {
+    return '/auth/login'
+  }
 })
 
 export default router
