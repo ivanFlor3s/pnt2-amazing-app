@@ -81,7 +81,7 @@ function cambiarImagen(opcionACambiar){
     left: 20px;
     padding: 15px;
     width: 300px;
-    max-height: 150px;
+    max-height: 250px;
     overflow: auto;
   }
 </style>
