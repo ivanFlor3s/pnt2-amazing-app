@@ -5,3 +5,8 @@ export const login = async (email, password) => {
   const response = await axios.post(BASE_URL + '/auth/login', { email, password })
   return response.data
 }
+
+export const register = async (name, lastName, email, password) => {
+    const response = await axios.post(BASE_URL + '/auth/register', { name, lastName, email, password })
+    return response.data
+}
