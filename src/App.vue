@@ -8,7 +8,6 @@ import router from '@/router'
 import { socket } from './utils/socket'
 import { gameStore } from './stores/game-state'
 
-router.push('login')
 
 const game = gameStore()
 
