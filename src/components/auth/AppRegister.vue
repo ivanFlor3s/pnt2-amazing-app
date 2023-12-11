@@ -127,6 +127,11 @@ async function onSubmit() {
   try {
     await register(name.value, lastName.value, email.value, password.value)
     Swal.close()
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro exitoso',
+      text: 'Ya podes iniciar sesión'
+    })
     router.push('login')
   } catch (error) {
     Swal.fire({
