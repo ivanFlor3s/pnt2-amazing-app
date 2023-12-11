@@ -3,7 +3,9 @@
 
   <div class="container">
     <div class="d-flex flex-md-row gap-3">
-      <DashboardWidget></DashboardWidget>
+      <DashboardWidget titulo="Usuarios Conectados"></DashboardWidget>
+      <DashboardWidget titulo="Nuevos usuarios"></DashboardWidget>
+      <DashboardWidget titulo="Juegos jugados"></DashboardWidget>
     </div>
 
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
