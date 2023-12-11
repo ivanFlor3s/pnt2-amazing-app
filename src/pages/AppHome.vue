@@ -1,14 +1,47 @@
 <template>
-  <div class="space">
+  <div class="space position-relative">
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
+
+    <div class="bg-dark card w-75 bg-opacity-75 position-absolute start-50 top-50 translate-middle">
+      <div class="card-body text-white">
+        <div class="card-title">
+          <h3>Home</h3>
+          <p>Selecciona la opcion para jugar</p>
+        </div>
+        <div>
+          <h5>Salas</h5>
+          <div class="table-responsive">
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Jugadores</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Sala 1</td>
+                  <td>3</td>
+                  <td>
+                    <button class="btn btn-primary">Jugar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style lang="scss" >
-
+<style lang="scss">
 $spacing: 2560px;
 $time01: 60s;
 $time02: 120s;
@@ -18,7 +51,9 @@ $time04: 400s;
 @function particles($max) {
   $val: 0 0 white;
   @for $i from 1 through $max {
-    $val: #{$val}, random($spacing)+px random($spacing)+px white;
+    $val:
+      #{$val},
+      random($spacing) + px random($spacing) + px white;
   }
   @return $val;
 }
