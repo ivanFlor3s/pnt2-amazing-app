@@ -5,7 +5,7 @@
     <div class="particle"></div>
     <div class="particle"></div>
 
-    <div class="bg-dark card w-75 bg-opacity-75 position-absolute start-50 top-50 translate-middle">
+    <div class="bg-dark card bg-opacity-75 position-absolute start-50 top-50 translate-middle">
       <div class="card-body text-white">
         <div class="card-title">
           <h3>Home</h3>
@@ -29,7 +29,7 @@
                   <td>Sala 1</td>
                   <td>3</td>
                   <td>
-                    <button class="btn btn-primary">Jugar</button>
+                    <button class="btn btn-primary" @click="play">Jugar</button>
                   </td>
                 </tr>
               </tbody>
@@ -127,3 +127,11 @@ body {
   }
 }
 </style>
+
+<script setup>
+import router from '@/router';
+
+function play(){
+  router.push('/game');
+}
+</script>
