@@ -23,7 +23,6 @@ const router = createRouter({
       children: [
         { path: '/auth/login', component: AppLogin },
         { path: '/auth/register', component: AppRegister }
-        // { path: '*', redirect: '/auth/login' }
       ]
     },
     {
@@ -31,13 +30,14 @@ const router = createRouter({
       component: AppRoot,
       children: [
         { path: '/home', component: AppHome },
+        { path: '/game', component: AppGame },
+        { path: '/result', component: AppResult },
         { path: '/dashboard', component: AppDashboard },
         { path: '/users', component: AppUsers },
         { path: '/profile', component: AppProfile}
       ]
     },
-    { path: '/game', component: AppGame },
-    { path: '/result', component: AppResult }
+    
   ]
 })
 
