@@ -6,6 +6,7 @@ import AppRoot from '../pages/AppRoot.vue'
 import AppHome from '../pages/AppHome.vue'
 import AppDashboard from '../pages/AppDashboard.vue'
 import AppUsers from '../pages/AppUsers.vue'
+import AppProfile from '../pages/AppProfile.vue'
 
 //AUTH
 import AppLogin from '../components/auth/AppLogin.vue'
@@ -31,7 +32,8 @@ const router = createRouter({
       children: [
         { path: '/home', component: AppHome },
         { path: '/dashboard', component: AppDashboard },
-        { path: '/users', component: AppUsers }
+        { path: '/users', component: AppUsers },
+        { path: '/profile', component: AppProfile}
       ]
     },
     { path: '/game', component: AppGame },
