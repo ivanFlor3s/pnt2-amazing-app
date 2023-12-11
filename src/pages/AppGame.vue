@@ -1,9 +1,9 @@
 <script setup>
 import ImagenNasa from '../components/ImagenNasa.vue'
-import ListaUsuarios from '../components/ListaUsuarios.vue';
+import ListaUsuarios from '../components/ListaUsuarios.vue'
 import { fetchImagesFromNasa } from '../utils/nasa-fetch'
 import { ref } from 'vue'
-import { socket } from '../utils/socket';
+import { socket } from '../utils/socket'
 
 const imagen = ref(null)
 const imagen2 = ref(null)
@@ -16,38 +16,36 @@ fetchImagesFromNasa().then((data) => {
   imagen2.value = data[1]
 })
 
-function evaluarSeleccion(opcion){
-  
+function evaluarSeleccion(opcion) {
   const fechaDeImagenSeleccionada = opcion == 0 ? imagen.value.date : imagen2.value.date
   const fechaImagenNoSeleccionada = opcion == 0 ? imagen2.value.date : imagen.value.date
   let gano = false
 
   gano = Date.parse(fechaDeImagenSeleccionada) < Date.parse(fechaImagenNoSeleccionada)
-  
-  if(gano){
+
+  if (gano) {
     socket.emit('nuevoPunto', socket.id)
   }
 
   cambiarImagen(opcion == 0 ? 1 : 0)
-
 }
 
-function cambiarImagen(opcionACambiar){
+function cambiarImagen(opcionACambiar) {
   fetchImagesFromNasa().then((data) => {
-    if(opcionACambiar == 0){
+    if (opcionACambiar == 0) {
       imagen.value = data[0]
-      mostrarFechaImg2.value = true;      
-      mostrarFechaImg1.value = false;      
-    }else{
+      mostrarFechaImg2.value = true
+      mostrarFechaImg1.value = false
+    } else {
       imagen2.value = data[0]
-      mostrarFechaImg2.value = false;      
-      mostrarFechaImg1.value = true;      
+      mostrarFechaImg2.value = false
+      mostrarFechaImg1.value = true
     }
   })
 }
 </script>
 <template>
-     <div class="d-flex w-100">
+  <div class="d-flex w-100 position-relative">
     <ImagenNasa
       class="flex-fill"
       v-if="imagen !== null"
@@ -66,23 +64,21 @@ function cambiarImagen(opcionACambiar){
       :mostrar-fecha="mostrarFechaImg2"
       @seleccionado="evaluarSeleccion(1)"
     ></ImagenNasa>
+    <div class="componenteUser bg-text text-white" style="width: 300px">
+    <ListaUsuarios :mostrar-barra="true"> </ListaUsuarios>
+  </div>
   </div>
 
-  <div class="componenteUser bg-text text-white" style="width: 300px;">
-    <ListaUsuarios :mostrar-barra="true">
-      
-    </ListaUsuarios>
-  </div>
+  
 </template>
 <style scoped>
-  .componenteUser{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 15px;
-    width: 300px;
-    max-height: 250px;
-    overflow: auto;
-  }
+.componenteUser {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 15px;
+  width: 300px;
+  max-height: 250px;
+  overflow: auto;
+}
 </style>
-
