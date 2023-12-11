@@ -41,6 +41,7 @@
 import { computed, ref } from 'vue'
 import { login } from '../../utils/proxy'
 import Swal from 'sweetalert2'
+import router from '@/router'
 
 const email = ref('')
 const password = ref('')
@@ -67,8 +68,10 @@ async function onSubmit() {
     }
   })
   try {
-    await login(email.value, password.value)
+    const result = await login(email.value, password.value)
+    localStorage.setItem('token', result.data.token)
     Swal.close()
+    router.push('/home')
   } catch (error) {
     console.log(error)
     Swal.fire({

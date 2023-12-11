@@ -11,6 +11,8 @@ import AppUsers from '../pages/AppUsers.vue'
 import AppLogin from '../components/auth/AppLogin.vue'
 import AppRegister from '../components/auth/AppRegister.vue'
 
+import {validateJwt} from '../utils/validate-jwt.js'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -39,7 +41,7 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const inAuthPath = to.path.includes('/auth')
-  const isAuthenticated = false
+  const isAuthenticated = validateJwt()
 
   if (!inAuthPath && !isAuthenticated) {
     return '/auth/login'

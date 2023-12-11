@@ -73,10 +73,18 @@
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
           <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li><a class="dropdown-item"  href="#" @click="signOut">Sign out</a></li>
         </ul>
       </div>
     </div>
     <router-view></router-view>
   </div>
 </template>
+<script setup>
+import router from '@/router'
+
+function signOut() {
+  localStorage.removeItem('token')
+  router.push('/login')
+}
+</script>
