@@ -24,7 +24,7 @@ export const updateUser = async (id, name, lastName, email) => {
 export const getUsers = async (filter) => {
   const url = filter ? BASE_URL + '/users?filter=' + filter : BASE_URL + '/users'
   const response = await axios.get(url, {
-    headers: { Authorization: localStorage.getItem('token') }
+    headers: { Authorization: sessionStorage.getItem('token') }
   })
   return response.data
 }
@@ -34,7 +34,7 @@ export const updateUserRole = async (id, role) => {
     BASE_URL + '/users/' + id + '/changeRol',
     { role },
     {
-      headers: { Authorization: localStorage.getItem('token') }
+      headers: { Authorization: sessionStorage.getItem('token') }
     }
   )
   return response.data
@@ -42,7 +42,7 @@ export const updateUserRole = async (id, role) => {
 
 export const deleteUser = async (id) => {
   const response = await axios.delete(BASE_URL + '/users/' + id, {
-    headers: { Authorization: localStorage.getItem('token') }
+    headers: { Authorization: sessionStorage.getItem('token') }
   })
   return response.data
 }
