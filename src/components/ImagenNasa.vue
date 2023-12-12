@@ -35,7 +35,7 @@ const props = defineProps({
   },    
   descripcion: {
     type: String,
-    required: true
+    required: false
   },
   mostrarBoton: {
     type: Boolean,

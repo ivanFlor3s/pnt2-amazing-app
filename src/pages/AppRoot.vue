@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-row">
-    <div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 4.5rem">
+    <div  v-if="!inGameRoute" class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 4.5rem">
       <router-link
         to="/"
         class="d-block p-3 link-dark text-decoration-none"
@@ -82,6 +82,11 @@
 </template>
 <script setup>
 import router from '@/router'
+import { computed } from 'vue';
+
+let inGameRoute = computed(() => {
+  return router.currentRoute.value.path.includes('game') 
+})
 
 function signOut() {
   localStorage.removeItem('token')
