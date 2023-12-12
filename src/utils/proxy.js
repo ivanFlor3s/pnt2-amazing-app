@@ -28,3 +28,21 @@ export const getUsers = async (filter) => {
   })
   return response.data
 }
+
+export const updateUserRole = async (id, role) => {
+  const response = await axios.put(
+    BASE_URL + '/users/' + id + '/changeRol',
+    { role },
+    {
+      headers: { Authorization: localStorage.getItem('token') }
+    }
+  )
+  return response.data
+}
+
+export const deleteUser = async (id) => {
+  const response = await axios.delete(BASE_URL + '/users/' + id, {
+    headers: { Authorization: localStorage.getItem('token') }
+  })
+  return response.data
+}
