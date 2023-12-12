@@ -27,7 +27,7 @@
             <i class="fa-solid fa-house"></i>
           </router-link>
         </li>
-        <li>
+        <li v-if="app.isAdmin">
           <router-link
             exact-active-class="active"
             to="/dashboard"

@@ -3,6 +3,12 @@
     <h3>Informacion personal</h3>
     <hr />
     <form class="mt-5" @submit.prevent="onSubmit">
+      <div class="mb-3">
+        Rol: 
+        <span class="badge fs-6" :class="{ 'bg-primary': app.isAdmin, 'bg-secondary': !app.isAdmin }">
+          {{ app.isAdmin ? 'Administrador' : 'Usuario' }}
+        </span>
+      </div>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="name" class="form-label">Nombre</label>
