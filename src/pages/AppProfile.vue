@@ -40,7 +40,7 @@
           <!-- <div class="invalid-feedback" v-if="mostrarErrorRequiredEmail">Campo requerido.</div> -->
         </div>
         <div class="mt-4 d-flex">
-          <button type="submit" class="ms-auto btn btn-primary">Guardar</button>
+          <button type="submit" class="ms-auto btn btn-primary">Guardar cambios</button>
         </div>
       </form>
     </div>
@@ -49,10 +49,13 @@
 <script setup>
 
 import { computed, ref } from 'vue'
+import { appStore } from '../stores/app.store';
 
-const name = ref('')
-const lastName = ref('')
-const email = ref('')
+const app = appStore()
+
+const name = ref(app.user.name)
+const lastName = ref(app.user.lastName)
+const email = ref(app.user.email)
 
 let mostrarErrorRequiredEmail = computed(() => {
     return email.value === ''
