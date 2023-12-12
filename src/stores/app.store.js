@@ -7,8 +7,8 @@ export const appStore = defineStore('app', {
         user: null,
     }),
     actions: {
-        setUser({name, lastName, email}){
-            this.user = {name, lastName, email};
+        setUser({id, name, lastName, email}){
+            this.user = {id, name, lastName, email};
             sessionStorage.setItem('user', JSON.stringify(this.user)); 
         },
         logout(){
