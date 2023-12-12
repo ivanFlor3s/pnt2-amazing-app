@@ -42,9 +42,11 @@ import { computed, ref } from 'vue'
 import { login } from '../../utils/proxy'
 import Swal from 'sweetalert2'
 import router from '@/router'
+import { appStore } from '../../stores/app.store'
 
 const email = ref('')
 const password = ref('')
+const app = appStore()
 
 let submitted = ref(false)
 
@@ -69,7 +71,8 @@ async function onSubmit() {
   })
   try {
     const result = await login(email.value, password.value)
-    localStorage.setItem('token', result.data.token)
+    app.setUser(result.data.user)
+    sessionStorage.setItem('token', result.data.token)
     Swal.close()
     router.push('/home')
   } catch (error) {

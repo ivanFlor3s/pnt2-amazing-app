@@ -7,9 +7,13 @@
 import router from '@/router'
 import { socket } from './utils/socket'
 import { gameStore } from './stores/game-state'
+import { appStore } from './stores/app.store';
 
 
 const game = gameStore()
+const app = appStore()
+
+app.setUserFromSessionStorage()
 
 socket.on('new user', (params) => {
 //   console.log('params cuando new user', params)
