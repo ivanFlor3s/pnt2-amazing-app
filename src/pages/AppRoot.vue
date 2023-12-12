@@ -41,7 +41,7 @@
           </router-link>
         </li>
 
-        <li>
+        <li v-if="app.isAdmin">
           <router-link
             exact-active-class="active"
             to="/users"
@@ -49,7 +49,7 @@
             title=""
             data-bs-toggle="tooltip"
             data-bs-placement="right"
-            data-bs-original-title="Customers"
+            data-bs-original-title="Users"
           >
             <i class="fa-regular fa-user"></i>
           </router-link>
@@ -83,13 +83,15 @@
 <script setup>
 import router from '@/router'
 import { computed } from 'vue';
+import { appStore } from '../stores/app.store';
 
+const app = appStore()
 let inGameRoute = computed(() => {
   return router.currentRoute.value.path.includes('game') 
 })
 
 function signOut() {
-  localStorage.removeItem('token')
+  sessionStorage.removeItem('token')
   router.push('/login')
 }
 </script>

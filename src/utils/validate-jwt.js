@@ -1,3 +1,3 @@
 export const validateJwt = () => {
-    return !!localStorage.getItem('token')
+    return !!sessionStorage.getItem('token')
 }
