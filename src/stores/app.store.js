@@ -7,7 +7,8 @@ export const appStore = defineStore('app', {
   getters: {
     isAdmin: (state) => {
       return state.user && state.user.role === 'ADMIN'
-    }
+    },
+    fullName: (state) => `${state.user.name} ${state.user.lastName}`
   },
   actions: {
     setUser({ id, name, lastName, email, role }) {
