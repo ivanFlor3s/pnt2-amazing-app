@@ -4,6 +4,15 @@ import ListaUsuarios from '../components/ListaUsuarios.vue'
 import { fetchImagesFromNasa } from '../utils/nasa-fetch'
 import { ref } from 'vue'
 import { socket } from '../utils/socket'
+import { appStore } from '../stores/app.store'
+import JSConfetti from 'js-confetti'
+
+const jsConfetti = new JSConfetti()
+
+
+
+const app = appStore()
+socket.emit('join server', app.fullName)
 
 const imagen = ref(null)
 const imagen2 = ref(null)
@@ -25,8 +34,16 @@ function evaluarSeleccion(opcion) {
 
   if (gano) {
     socket.emit('nuevoPunto', socket.id)
-  }
 
+    jsConfetti.addConfetti({
+      emojis: ['🎉', '🎊', '👍'],
+    })
+  }
+  else {
+    jsConfetti.addConfetti({
+      emojis: ['😢', '😭', '👎'],
+    })
+  }
   cambiarImagen(opcion == 0 ? 1 : 0)
 }
 
