@@ -46,3 +46,21 @@ export const deleteUser = async (id) => {
   })
   return response.data
 }
+
+export const createGame = async (name, maxScore) => {
+  const response = await axios.post(
+    BASE_URL + '/games',
+    { name, scoreMax: maxScore },
+    {
+      headers: { Authorization: sessionStorage.getItem('token') }
+    }
+  )
+  return response.data
+}
+
+export const getCurrentGame = async () => {
+  const response = await axios.get(BASE_URL + '/games/current', {
+    headers: { Authorization: sessionStorage.getItem('token') }
+  })
+  return response.data
+}

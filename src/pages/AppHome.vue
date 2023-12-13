@@ -12,28 +12,30 @@
           <p>Selecciona la opcion para jugar</p>
         </div>
         <div>
-          <h5>Salas</h5>
-          <div class="table-responsive">
-            <table class="table table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Jugadores</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Sala 1</td>
-                  <td>3</td>
-                  <td>
-                    <button class="btn btn-primary" @click="play">Jugar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="card w-100">
+            <div class="card-body">
+              <div class="card-title">
+                <h5>Juegos pendientes</h5>
+              </div>
+              <div v-if="currentGame" class="border border-1 p-3 mb-3 ">
+                <p>Nombre: {{currentGame.name}}</p>
+                <div class="d-flex justify-content-between">
+                  <div class="">
+                    <p>Users: <span class="fw-bold">1</span>/10</p>
+                    <p>Estado: <span class="badge bg-primary">En curso</span></p>
+                  </div>
+                  <div class="">
+                    <button class="ms-auto btn  h-100 btn-outline-success fs-3">
+                      <i class="fas fa-play"></i>
+                      Unirse</button>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="d-flex gap-3 justify-content-end">
+                <button class="btn btn-primary" @click="refreshCurrentGame"> Refrescar</button>
+                <button class="btn btn-success" @click="openNewGameModal" >Crear nuevo juego</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -129,9 +131,51 @@ body {
 </style>
 
 <script setup>
-import router from '@/router';
+import router from '@/router'
+import Swal from 'sweetalert2';
+import { createGame, getCurrentGame } from '../utils/proxy.js'
+import { ref } from 'vue';
 
-function play(){
-  router.push('/game');
+let currentGame = ref(null)
+refreshCurrentGame()
+
+function refreshCurrentGame(){
+  getCurrentGame().then((game) => {
+    currentGame.value = game.data
+  });
+}
+
+
+function openNewGameModal(){
+  Swal.fire({
+    title: 'Crear nuevo juego',
+    html: `
+      <input id="name" class="swal2-input" placeholder="Nombre del juego">
+      <input type="number" id="maxScore" class="swal2-input" placeholder="Puntaje maximo">
+    `,
+    focusConfirm: false,
+    preConfirm: () => {
+      const name = Swal.getPopup().querySelector('#name').value
+      const maxScore = Swal.getPopup().querySelector('#maxScore').value
+      if (!name || !maxScore) {
+        Swal.showValidationMessage(`Ingrese todos los campos`)
+      }
+      return { name, maxScore }
+    }
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        const gameCreated = await createGame(result.value.name, result.value.maxScore)
+        currentGame.value = gameCreated.data
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ya existe un juego en curso',
+        })
+        refreshCurrentGame()
+      }
+    }
+  })
 }
 </script>
