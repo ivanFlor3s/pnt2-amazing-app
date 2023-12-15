@@ -25,8 +25,8 @@
                     <p>Estado: <span class="badge bg-primary">En curso</span></p>
                   </div>
                   <div class="">
-                    <button class="ms-auto btn  h-100 btn-outline-success fs-3">
-                      <i class="fas fa-play"></i>
+                    <button @click="enterGame" class="ms-auto btn  h-100 btn-outline-success fs-3">
+                      <i class="fas fa-play" ></i>
                       Unirse</button>
                   </div>
                 </div>
@@ -136,6 +136,7 @@ import Swal from 'sweetalert2';
 import { createGame, getCurrentGame } from '../utils/proxy.js'
 import { ref } from 'vue';
 
+
 let currentGame = ref(null)
 refreshCurrentGame()
 
@@ -145,6 +146,10 @@ function refreshCurrentGame(){
   });
 }
 
+function enterGame(){
+  console.log('enter game')
+  router.push('game')
+}
 
 function openNewGameModal(){
   Swal.fire({
