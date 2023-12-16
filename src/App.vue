@@ -27,7 +27,7 @@ socket.on('user disconnected', (users) => {
 })
 
 socket.on('actualizar puntos', (users)=> {
-   game.setUsers(users)
+  game.setUsers(users)
 })
 
 socket.on('ganador', (users)=> {
@@ -36,8 +36,10 @@ socket.on('ganador', (users)=> {
   game.setUsers(users)
 })
 
+
 socket.on('ir a game', () => {
   router.push('game')
 })
 
+socket.emit('userEnterApp'); 
 </script>
