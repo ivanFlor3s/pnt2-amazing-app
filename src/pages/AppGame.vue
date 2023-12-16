@@ -12,7 +12,7 @@ const jsConfetti = new JSConfetti()
 
 
 const app = appStore()
-socket.emit('join server', app.fullName)
+socket.emit('join game', app.fullName)
 
 const imagen = ref(null)
 const imagen2 = ref(null)
