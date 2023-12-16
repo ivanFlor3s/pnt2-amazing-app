@@ -17,23 +17,28 @@
               <div class="card-title">
                 <h5>Juegos pendientes</h5>
               </div>
-              <div v-if="currentGame" class="border border-1 p-3 mb-3 ">
-                <p>Nombre: {{currentGame.name}}</p>
+              <div v-if="currentGame" class="border border-1 p-3 mb-3">
+                <p>Nombre: {{ currentGame.name }}</p>
                 <div class="d-flex justify-content-between">
                   <div class="">
-                    <p>Users: <span class="fw-bold">1</span>/10</p>
+                    <p>
+                      Users:
+                      <UserLabel></UserLabel>
+                    </p>
                     <p>Estado: <span class="badge bg-primary">En curso</span></p>
                   </div>
                   <div class="">
-                    <button @click="enterGame" class="ms-auto btn  h-100 btn-outline-success fs-3">
-                      <i class="fas fa-play" ></i>
-                      Unirse</button>
+                    <button @click="enterGame" class="ms-auto btn h-100 btn-outline-success fs-3">
+                      <i class="fas fa-play"></i>
+                      Unirse
+                    </button>
                   </div>
                 </div>
               </div>
-              <div v-else class="d-flex gap-3 justify-content-end">
-                <button class="btn btn-primary" @click="refreshCurrentGame"> Refrescar</button>
-                <button class="btn btn-success" @click="openNewGameModal" >Crear nuevo juego</button>
+              <!-- <div v-else class="d-flex gap-3 justify-content-end"> -->
+              <div class="d-flex gap-3 justify-content-end">
+                <button class="btn btn-primary" @click="refreshCurrentGame">Refrescar</button>
+                <button class="btn btn-success" @click="openNewGameModal">Crear nuevo juego</button>
               </div>
             </div>
           </div>
@@ -132,26 +137,26 @@ body {
 
 <script setup>
 import router from '@/router'
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
 import { createGame, getCurrentGame } from '../utils/proxy.js'
-import { ref } from 'vue';
-
+import UserLabel from '../components/home/UserLabel.vue'
+import { ref } from 'vue'
 
 let currentGame = ref(null)
 refreshCurrentGame()
 
-function refreshCurrentGame(){
+function refreshCurrentGame() {
   getCurrentGame().then((game) => {
     currentGame.value = game.data
-  });
+  })
 }
 
-function enterGame(){
+function enterGame() {
   console.log('enter game')
   router.push('game')
 }
 
-function openNewGameModal(){
+function openNewGameModal() {
   Swal.fire({
     title: 'Crear nuevo juego',
     html: `
@@ -176,7 +181,7 @@ function openNewGameModal(){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Ya existe un juego en curso',
+          text: 'Ya existe un juego en curso'
         })
         refreshCurrentGame()
       }
