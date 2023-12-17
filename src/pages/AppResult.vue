@@ -4,7 +4,7 @@
             <div class="p-3">
                 <h1 class="text-center">Ganaste {{game.users.find(x => x.winner).userName }}!!!</h1>
                 <ListaUsuarios :mostrar-barra="false"></ListaUsuarios>
-                <a  @click="volverAJugar()" class="btn btn-primary mt-3">Volver a jugar</a>
+                <a  @click="volverAHome()" class="btn btn-primary mt-3">Volver a home</a>
             </div>
         </div>
     </div> 
@@ -14,14 +14,12 @@
 import ListaUsuarios from '../components/ListaUsuarios.vue';
 import router from '@/router'
 import { gameStore } from '../stores/game-state';
-import { socket } from '../utils/socket';
 
 
 const game = gameStore()
 
-function volverAJugar(){
-    socket.emit('volver a jugar')
-    router.push('game')
+function volverAHome(){
+    router.push('home')
 }
 
 </script>
