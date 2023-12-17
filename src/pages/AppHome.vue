@@ -19,6 +19,7 @@
               </div>
               <div v-if="currentGame" class="border border-1 p-3 mb-3">
                 <p>Nombre: {{ currentGame.name }}</p>
+                <p>Puntaje maximo: {{ currentGame.scoreMax }}</p>
                 <div class="d-flex justify-content-between">
                   <div class="">
                     <p>
@@ -141,18 +142,20 @@ import Swal from 'sweetalert2'
 import { createGame, getCurrentGame } from '../utils/proxy.js'
 import UserLabel from '../components/home/UserLabel.vue'
 import { ref } from 'vue'
+import { gameStore } from '../stores/game-state'
 
+const game = gameStore()
 let currentGame = ref(null)
 refreshCurrentGame()
 
 function refreshCurrentGame() {
-  getCurrentGame().then((game) => {
-    currentGame.value = game.data
+  getCurrentGame().then((res) => {
+    currentGame.value = res.data
+    game.setCurrentGame(res.data)
   })
 }
 
 function enterGame() {
-  console.log('enter game')
   router.push('game')
 }
 
@@ -177,6 +180,7 @@ function openNewGameModal() {
       try {
         const gameCreated = await createGame(result.value.name, result.value.maxScore)
         currentGame.value = gameCreated.data
+        game.setCurrentGame(gameCreated.data)
       } catch (error) {
         Swal.fire({
           icon: 'error',
