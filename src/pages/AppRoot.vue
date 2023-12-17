@@ -30,20 +30,6 @@
         <li v-if="app.isAdmin">
           <router-link
             exact-active-class="active"
-            to="/dashboard"
-            class="nav-link py-3 border-bottom"
-            title=""
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-original-title="Dashboard"
-          >
-            <i class="fa fa-dashboard"></i>
-          </router-link>
-        </li>
-
-        <li v-if="app.isAdmin">
-          <router-link
-            exact-active-class="active"
             to="/users"
             class="nav-link py-3 border-bottom"
             title=""
