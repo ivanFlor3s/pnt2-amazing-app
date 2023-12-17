@@ -6,13 +6,17 @@ import { ref } from 'vue'
 import { socket } from '../utils/socket'
 import { appStore } from '../stores/app.store'
 import JSConfetti from 'js-confetti'
+import { gameStore } from '../stores/game-state'
 
 const jsConfetti = new JSConfetti()
 
 
 
 const app = appStore()
-socket.emit('join game', app.fullName)
+const game = gameStore()
+
+socket.emit('join game', { userName: app.fullName, userId: app.user.id })
+socket.emit('set limit score', game.currentGame.scoreMax)
 
 const imagen = ref(null)
 const imagen2 = ref(null)
