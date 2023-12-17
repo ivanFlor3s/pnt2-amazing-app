@@ -31,9 +31,11 @@ socket.on('actualizar puntos', (users)=> {
 })
 
 socket.on('ganador', (users)=> {
-  router.push('result')
-
-  game.setUsers(users)
+  const isInGame = router.currentRoute.path.includes('game')
+  if(isInGame){
+    router.push('result')
+    game.setUsers(users)
+  }
 })
 
 

@@ -20,6 +20,7 @@ const game = gameStore()
 
 function volverAHome(){
     router.push('home')
+    game.$reset()
 }
 
 </script>
