@@ -13,7 +13,9 @@
 
 <script setup>
 import { computed } from 'vue';
+import { gameStore } from '../stores/game-state';
 
+const game = gameStore()
 const props = defineProps({
   puntaje: {
     type: Number,
@@ -21,7 +23,7 @@ const props = defineProps({
   }})
   
 const porcentaje = computed(() => {
-  return (props.puntaje * 100) / 20
+  return (props.puntaje * 100) / game.currentGame.scoreMax
 })
 
 
